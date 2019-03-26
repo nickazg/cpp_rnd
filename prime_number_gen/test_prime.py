@@ -3,7 +3,7 @@ import py_prime_number_gen
 
 import time
 
-count = 10000 #10k
+count = 10000000 #10k
 
 
 # print prime_module.primeNumbers(count, True)
@@ -15,21 +15,21 @@ count = 10000 #10k
 # cpp_nonsoe_time = time.time() - cpp_nonsoe_time
 # print 'cpp_nonsoe_time:', cpp_nonsoe_time 
 
-# cpp_soe_time = time.time()
-# print len(prime_module.primeNumbers(count, True))
-# cpp_soe_time = time.time() - cpp_soe_time
-# print 'cpp_soe_time:', cpp_soe_time 
+cpp_soe_time = time.time()
+print len(prime_module.primeNumbers(count, True))
+cpp_soe_time = time.time() - cpp_soe_time
+print 'cpp_soe_time:', cpp_soe_time 
 
 # cpp_time = time.time()
 # print 'cpp_prime count:', len(prime_module.primeNumbers(count))
 # cpp_time = time.time() - cpp_time
 
-py_time = time.time()
-print 'py_prime:', py_prime_number_gen.primeNumbers(count)
-py_time = time.time() - py_time
+# py_time = time.time()
+# print 'py_prime:', py_prime_number_gen.primeNumbers(count)
+# py_time = time.time() - py_time
 
 # print 'cpp_time:', cpp_time 
-print 'py_time', py_time
+# print 'py_time', py_time
 
 # # Python
 # # py_time: 0.367391109467 @ 1k

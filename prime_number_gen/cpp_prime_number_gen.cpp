@@ -60,10 +60,8 @@ std::vector<int> primeNumbersSoE(int count_to){
         if (is_prime[i] == true){
             
             // find every multipule within count_to
-            int mult = i+i;
-            while (mult < count_to){                
+            for (int mult = i+i; mult < count_to; mult += i){             
                 is_prime[mult] = false;
-                mult += i;
             }
         }
     }
