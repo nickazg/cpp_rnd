@@ -6,6 +6,34 @@
 #include <Python.h>
 
 
+// bool isPrimeV3(int in_num, std::vector<int> *cache) {
+//     // Returns False if divisable by anything other than 1 or itself
+    
+//     // Will loop thrugh every int betweeen 1 and in_num
+//     for (float num = 2; num < in_num; num++){
+//         float prime_calc = in_num / num;
+//         if (prime_calc == static_cast<int>(prime_calc)){
+//             return false;
+//         } 
+//     }
+
+//     return true;
+// }
+
+bool isPrimeV2(int in_num) {
+    // Returns False if divisable by anything other than 1 or itself
+    
+    // Will loop thrugh every int betweeen 1 and in_num
+    for (float num = 2; num < in_num; num++){
+        float prime_calc = in_num / num;
+        if (prime_calc == static_cast<int>(prime_calc)){
+            return false;
+        } 
+    }
+
+    return true;
+}
+
 bool isPrime(float number) {  
 
     int divisable_count = 0;
@@ -14,7 +42,6 @@ bool isPrime(float number) {
         if (prime_calc == static_cast<int>(prime_calc)){
             divisable_count++;
         }
-
     }
 
     if (divisable_count == 2) {
@@ -24,15 +51,13 @@ bool isPrime(float number) {
 }
 
 std::vector<int> primeNumbers(int count_to){
-    std::vector<int> prime_numbers;   
-    for (int i = 1; i < count_to+1; i++) {
-        if (isPrime(i)) {
-            // std::cout << i << ", ";
+    std::vector<int> prime_numbers;
+    // std::vector<int> cache;
+    for (int i = 2; i < count_to+1; i++) {
+        if (isPrimeV2(i)) {
             prime_numbers.push_back(i);
         }        
     }
-    // std::cout << "\n";   
-    // std::cout << "Prime Count: " << prime_numbers.size() << "\n";
 
     // return prime_numbers;
     return prime_numbers;
