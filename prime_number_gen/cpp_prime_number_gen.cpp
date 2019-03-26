@@ -6,9 +6,7 @@
 #include <Python.h>
 
 
-
 bool isPrimeV2(int in_num) {
-    // Returns False if divisable by anything other than 1 or itself
     
     // Will loop thrugh every int betweeen 1 and in_num
     for (float num = 2; num < in_num; num++){
@@ -21,6 +19,7 @@ bool isPrimeV2(int in_num) {
     return true;
 }
 
+// Classic
 bool isPrime(float number) {  
 
     int divisable_count = 0;
@@ -49,9 +48,7 @@ std::vector<int> primeNumbers(int count_to){
     return prime_numbers;
 }
 
-std::vector<int> primeNumbersSoE(int count_to){
-    // std::cout << "primeNumbersSoE" << std::endl;
-    
+std::vector<int> primeNumbersSoE(int count_to){   
     // Creating a vector to initally set all numbers to prime == true
     std::vector<int> is_prime(count_to, 1); 
     std::vector<int> prime_numbers; 
@@ -71,6 +68,7 @@ std::vector<int> primeNumbersSoE(int count_to){
         }
     }
 
+    // Adds every prime number into a new vector to finally return
     for (int num = 2; num < count_to; num++){
         if ( is_prime[num] == true ){
             prime_numbers.push_back(num);
@@ -120,8 +118,6 @@ static PyObject * primeNumbers_wrapper(PyObject * self, PyObject * args)
 
   // run the actual function
   result = calcPrimeNumbers(input, soe);
-//   result = primeNumbers(input);
-//   result = primeNumbersSoE(input);
 
   // build the resulting string into a Python object. https://docs.python.org/2/c-api/int.html
   // https://docs.python.org/2/c-api/arg.html?highlight=py_buildvalue#c.Py_BuildValue
