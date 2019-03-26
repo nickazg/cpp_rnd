@@ -6,19 +6,6 @@
 #include <Python.h>
 
 
-// bool isPrimeV3(int in_num, std::vector<int> *cache) {
-//     // Returns False if divisable by anything other than 1 or itself
-    
-//     // Will loop thrugh every int betweeen 1 and in_num
-//     for (float num = 2; num < in_num; num++){
-//         float prime_calc = in_num / num;
-//         if (prime_calc == static_cast<int>(prime_calc)){
-//             return false;
-//         } 
-//     }
-
-//     return true;
-// }
 
 bool isPrimeV2(int in_num) {
     // Returns False if divisable by anything other than 1 or itself
@@ -51,8 +38,7 @@ bool isPrime(float number) {
 }
 
 std::vector<int> primeNumbers(int count_to){
-    std::vector<int> prime_numbers;
-    // std::vector<int> cache;
+    std::vector<int> prime_numbers;    
     for (int i = 2; i < count_to+1; i++) {
         if (isPrimeV2(i)) {
             prime_numbers.push_back(i);
@@ -62,6 +48,47 @@ std::vector<int> primeNumbers(int count_to){
     // return prime_numbers;
     return prime_numbers;
 }
+
+std::vector<int> primeNumbersSoE(int count_to){
+    // std::cout << "primeNumbersSoE" << std::endl;
+    
+    // Creating a vector to initally set all numbers to prime == true
+    std::vector<int> is_prime(count_to, 1); 
+    std::vector<int> prime_numbers; 
+
+    // Looping through all numbers
+    for (int i = 2; i < count_to; i++){
+        
+        // If current number is still potentially a prime number
+        if (is_prime[i] == true){
+            
+            // find every multipule within count_to
+            int mult = i+i;
+            while (mult < count_to){                
+                is_prime[mult] = false;
+                mult += i;
+            }
+        }
+    }
+
+    for (int num = 2; num < count_to; num++){
+        if ( is_prime[num] == true ){
+            prime_numbers.push_back(num);
+        }
+    }
+
+    return prime_numbers;
+}
+
+std::vector<int> calcPrimeNumbers(int count_to, int soe){
+    if (soe == true){
+        return primeNumbersSoE(count_to);
+    } else {
+        return primeNumbers(count_to);
+    }
+
+}
+
 
 PyObject* vectorToList_Int(const std::vector<int> &data) {
   PyObject* listObj = PyList_New( data.size() );
@@ -82,16 +109,19 @@ PyObject* vectorToList_Int(const std::vector<int> &data) {
 static PyObject * primeNumbers_wrapper(PyObject * self, PyObject * args)
 {
   int input;
+  int soe;
   std::vector<int> result;
   PyObject * ret;
 
   // parse arguments as int https://docs.python.org/2.0/ext/parseTuple.html
-  if (!PyArg_ParseTuple(args, "i", &input)) {
+  if (!PyArg_ParseTuple(args, "ii", &input, &soe)) {
     return NULL;
   }
 
   // run the actual function
-  result = primeNumbers(input);
+  result = calcPrimeNumbers(input, soe);
+//   result = primeNumbers(input);
+//   result = primeNumbersSoE(input);
 
   // build the resulting string into a Python object. https://docs.python.org/2/c-api/int.html
   // https://docs.python.org/2/c-api/arg.html?highlight=py_buildvalue#c.Py_BuildValue
@@ -118,7 +148,7 @@ PyMODINIT_FUNC initprime_module(void)
 
 
 int main() {
-    // primeNumbers(10000);
+    // std::cout << "primeNumbersSoE: " << primeNumbersSoE(1000).size() << "\n";
 }
 
 
