@@ -50,14 +50,14 @@ std::vector<int> primeNumbers(int count_to){
 
 std::vector<int> primeNumbersSoE(int count_to){   
     // Creating a vector to initally set all numbers to prime == true
-    std::vector<int> is_prime(count_to, 1); 
-    std::vector<int> prime_numbers; 
+    std::vector<int> is_prime(count_to, true); 
+    std::vector<int> prime_numbers;
 
     // Looping through all numbers
     for (int i = 2; i < count_to; i++){
         
         // If current number is still potentially a prime number
-        if (is_prime[i] == true){
+        if (is_prime[i] == true){            
             
             // find every multipule within count_to
             for (int mult = i+i; mult < count_to; mult += i){             

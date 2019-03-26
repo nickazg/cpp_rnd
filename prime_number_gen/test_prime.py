@@ -3,7 +3,7 @@ import py_prime_number_gen
 
 import time
 
-count = 10000000 #10k
+count = 100000000 #10k
 
 
 # print prime_module.primeNumbers(count, True)
@@ -45,7 +45,7 @@ print 'cpp_soe_time:', cpp_soe_time
 # # cpp_time: 201.495270014 @ 1mil (count: 78498)
 
 
-# # Soe
+# # Insane (Soe)
 # # cpp_soe_time: 0.000253915786743 @ 10k (count: 1229)
 # # cpp_soe_time: 0.00199508666992 @ 100k (count: 9592)
 # # cpp_soe_time: 0.0249371528625 @ 1mil (count: 78498)
